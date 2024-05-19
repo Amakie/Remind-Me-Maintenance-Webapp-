@@ -1,10 +1,9 @@
 const {Router} = require ("express")
+const { get_App } = require ("../controllers/controllersapp")
 
 const router = Router()
 
-router.get('/', (req, res) => {
-    res.json({message: "welcome to our app"})
-})
+router.get('/', get_App)
 
 module.exports = router;
 

@@ -7,4 +7,4 @@ const appschema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('App', appschema)
+module.exports = mongoose.model('_App', appschema)
