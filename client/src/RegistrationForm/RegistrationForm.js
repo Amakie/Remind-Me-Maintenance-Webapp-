@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import bg_image from '../Assets/fm-pg-bg.jpg'
+import { useAppContext } from "../App/AppContext";
 
 
-function RegistrationForm({ onRegister }) {
+function RegistrationForm() {
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
@@ -11,7 +12,8 @@ function RegistrationForm({ onRegister }) {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [isLoading, setIsLoading] = useState('');
     const [error, setError] = useState(null);
-    const [registrationSuccess, setRegistrationSuccess] = useState(false);
+    
+    const { onRegister, handleRegister, registrationSuccess } = useAppContext();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,7 +28,7 @@ function RegistrationForm({ onRegister }) {
 
         try {
             const userData = { firstname, lastname, email, password };
-            const response = await fetch('http://localhost:5000/api/register', {
+            const response = await fetch("", {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -36,16 +38,17 @@ function RegistrationForm({ onRegister }) {
             
             if (response.ok) {
               console.log('Registration successful!');
-              setRegistrationSuccess(true);
+              handleRegister();
               onRegister(true);
             } else {
               console.error('Registration failed.');
               return;
             }
           } catch (error) {
-            console.error('Error during registration:', error);
-            return;
-          }
+            console.error("Error:", error);
+            setError("Something went wrong. Please try again later.");
+            setIsLoading(false);
+        }
         
     };
 
@@ -109,9 +112,9 @@ function RegistrationForm({ onRegister }) {
                         />
                     </div>
                     <button type="submit" disabled={isLoading} className="w-full mt-5 text-md font-semibold bg-burgundy text-white px-4 py-2 rounded-md hover:bg-black">Register</button>
-                    {error && <p>{error}</p>}
+                    {error && <p className="text-red-500">{error}</p>}
+                    <p className="text-center text-burgundy mt-3">Already have an account? <Link to={'/Login'}><span className="font-semibold underline">Log In</span></Link></p>
                 </form>
-                <p className="text-center text-burgundy mt-3">Already have an account? <Link to={'/Login'}><span className="font-semibold underline">Log In</span></Link></p>
             </div>
         </div>
     );

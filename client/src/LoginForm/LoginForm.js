@@ -1,13 +1,16 @@
 import React, { useState} from "react";
 import { Link } from "react-router-dom";
 import bg_image from '../Assets/fm-pg-bg.jpg'
+import { useAppContext } from "../App/AppContext";
 
-function LoginForm({ onLogin, registrationSuccess }){
+function LoginForm(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const { onLogin, registrationSuccess } = useAppContext();
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
