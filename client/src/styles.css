@@ -1,4 +1,5 @@
 /* styles.css */
+@import 'normalize.css';
 
 @tailwind base;
 @tailwind components;

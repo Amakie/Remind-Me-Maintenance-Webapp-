@@ -57,8 +57,8 @@ function RegistrationForm() {
     }
 
     return (
-        <div className="bg-cover flex flex-col justify-center bg-center h-screen" style={{ backgroundImage: `url(${bg_image})` }}>
-            <div className="max-w-md my-20 mx-20 mt-0 p-6 bg-white rounded-xl">
+        <div className="bg-cover flex flex-col justify-center bg-center min-h-screen" style={{ backgroundImage: `url(${bg_image})` }}>
+            <div className="max-w-sm  my-20 mx-20 sm:ml-10 lg:ml-40 mt-0 md:mt-20 md:ml-40 lg:mt-10 p-6 bg-white rounded-xl">
                 <h2 className="text-2xl text-burgundy font-sembold mb-4 font-bold text-center">Create new account</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-2">

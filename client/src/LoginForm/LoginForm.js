@@ -45,7 +45,7 @@ function LoginForm(){
 
     return (
         <div className="bg-cover flex flex-col justify-center bg-center h-screen" style={{ backgroundImage: `url(${bg_image})` }}>
-            <div className="max-w-md my-20 mx-20 mt-0 p-6 bg-white rounded-xl">
+            <div className="max-w-sm  my-20 mx-20 sm:ml-10 lg:ml-40 mt-0 md:mt-20 md:ml-40 lg:mt-10 p-6 bg-white rounded-xl">
                 <h2 className="text-2xl font-sembold mb-4 text-burgundy text-center font-bold">Sign In</h2>
                 {registrationSuccess && <p className="text-red-500 mb-4">Please login to continue</p>}
                 <form onSubmit={handleSubmit}>

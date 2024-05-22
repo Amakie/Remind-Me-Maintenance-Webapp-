@@ -12,9 +12,9 @@ function Header() {
     const { isLoggedIn, isOpen, handleSignOut, toggleSidebar, isSidebarOpen, isLargeScreen, toggleDropdown } = useAppContext()
 
     return (
-        <header className="bg-black text-white py-4 px-6 border-b-4 border-burgundy">
-            <div className={`max-w-screen-xl ${isLargeScreen ? 'mx-40' : 'mx-auto'} h-10 font-semibold flex items-center justify-between`}>
-            <Link to="/" ><img alt="logo" src={QC2} className="h-40 w-40"/></Link>
+        <header className="bg-black text-white py-4 px-3 border-b-4 border-burgundy">
+            <div className={`max-w-screen-xl ${isLargeScreen ? 'mx-40' : 'mx-auto sm:mx-10'} h-10 font-semibold flex items-center justify-between`}>
+            <Link to="/" ><img alt="logo" src={QC2} className="h-40 w-[80px] sm:w-40 lg:w-40"/></Link>
             <div className="flex items-center">
                     {isLargeScreen && (
                         <nav className="hidden md:flex space-x-10">
@@ -25,7 +25,7 @@ function Header() {
                         </nav>
                     )}
                     {!isLoggedIn ? (
-                        <Link to="/login" className={`text-white font-semibold ${isLargeScreen ? 'ml-60 bg-black text-white h-10 py-5 px-5 flex items-center border rounded' : 'mr-5'}`}>Sign In/Sign Up</Link>
+                        <Link to="/login" className={`text-white text-semibold ${isLargeScreen ? 'ml-60 bg-black text-white h-10 py-5 px-5 flex items-center border rounded' : 'text-sm '}`}>Sign In/Sign Up</Link>
                     ) : (
                         <div className={`${isLargeScreen ? 'ml-60 flex flex-row' : 'flex flex-row' }`}>
                             {/*<Link to={''}><img alt="notification" src={notification} className="h-8 mr-5"/></Link>*/}
@@ -39,7 +39,7 @@ function Header() {
                             {isOpen && (
                                 <div className="flex flex-col space-y-2 bg-white fixed z-20 mt-10 p-5 items-start">
                                         <Link to={'/EditProfile'}> My Profile</Link>
-                                        <Link to={''}> Transactions</Link>
+                                        <Link to={''}> M</Link>
                                         <button onClick={handleSignOut}> Sign Out</button>
                                 </div>
                                 )}
@@ -47,7 +47,7 @@ function Header() {
                     )}
                     {!isLargeScreen && (
                         <button 
-                            className="md:hidden"
+                            className="lg:hidden"
                             onClick={toggleSidebar}
                         >
                             {isSidebarOpen ? <img alt="close" src={close} className="h-8" /> : <img alt="menu" src={menu} className="h-8"/>}
