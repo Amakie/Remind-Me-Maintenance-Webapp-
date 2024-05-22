@@ -13,7 +13,7 @@ function Header() {
 
     return (
         <header className="bg-black text-white py-4 px-3 border-b-4 border-burgundy">
-            <div className={`max-w-screen-xl ${isLargeScreen ? 'mx-40' : 'mx-auto sm:mx-10'} h-10 font-semibold flex items-center justify-between`}>
+            <div className={`max-w-screen-xl ${isLargeScreen ? 'mx-auto' : 'mx-auto sm:mx-10'} h-10 font-semibold flex items-center justify-between`}>
             <Link to="/" ><img alt="logo" src={QC2} className="h-40 w-[80px] sm:w-40 lg:w-40"/></Link>
             <div className="flex items-center">
                     {isLargeScreen && (
@@ -25,7 +25,7 @@ function Header() {
                         </nav>
                     )}
                     {!isLoggedIn ? (
-                        <Link to="/login" className={`text-white text-semibold ${isLargeScreen ? 'ml-60 bg-black text-white h-10 py-5 px-5 flex items-center border rounded' : 'text-sm '}`}>Sign In/Sign Up</Link>
+                        <Link to="/login" className={`text-white text-semibold ${isLargeScreen ? 'ml-60 bg-black text-white h-10 py-5 px-5 min-w-fit flex items-center border rounded' : 'text-sm '}`}>Sign In/Sign Up</Link>
                     ) : (
                         <div className={`${isLargeScreen ? 'ml-60 flex flex-row' : 'flex flex-row' }`}>
                             {/*<Link to={''}><img alt="notification" src={notification} className="h-8 mr-5"/></Link>*/}
