@@ -7,5 +7,6 @@ router.get('/', get_App)
 router.post('/save', save_App)
 router.post('/update', update_App)
 router.post('/delete', delete_App)
+router.post('/login', login_App)
 
 module.exports = router
