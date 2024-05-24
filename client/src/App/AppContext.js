@@ -16,11 +16,7 @@ export const AppProvider = ({ children }) => {
         setIsOpen(!isOpen)
     }
 
-    const handleLogin = () => {
-        setIsLoggedIn(true);
-    };
-
-    const handleRegister = () => {
+        const handleRegister = () => {
         setRegistrationSuccess(true);
     };
 
@@ -56,7 +52,7 @@ export const AppProvider = ({ children }) => {
                 isSidebarOpen,
                 isOpen,
                 toggleDropdown,
-                handleLogin,
+                //handleLogin,
                 handleRegister,
                 handleSignOut,
                 toggleSidebar,

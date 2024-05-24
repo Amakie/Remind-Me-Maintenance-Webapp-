@@ -1,23 +1,20 @@
 import React, { useState} from "react";
 import { Link } from "react-router-dom";
 import bg_image from '../Assets/fm-pg-bg.jpg'
-import { useAppContext } from "../App/AppContext";
 
-function LoginForm(){
+function LoginForm({ onLogin, registrationSuccess }){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const { onLogin, registrationSuccess } = useAppContext();
-    
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
         setIsLoading(true);
 
         try{
-            const response = await fetch("", {
+            const response = await fetch("http://localhost:3000/api/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -30,12 +27,17 @@ function LoginForm(){
                 }
                 throw new Error("Something went wrong");
             }
+            const data = await response.json();
+            const token = data.token;
 
+            sessionStorage.setItem("token", token);
+            
             setEmail("");
             setPassword("");
             setError(null);
             setIsLoading(false);
             onLogin();
+            console.log("Auth Token:", token);
         } catch (error) {
             console.error("Error:", error);
             setError("Something went wrong. Please try again later.");

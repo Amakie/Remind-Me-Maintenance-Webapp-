@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import bg_image from '../Assets/fm-pg-bg.jpg'
-import { useAppContext } from "../App/AppContext";
 
 
-function RegistrationForm() {
+function RegistrationForm({ handleRegister, registrationSuccess}) {
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
@@ -13,8 +12,6 @@ function RegistrationForm() {
     const [isLoading, setIsLoading] = useState('');
     const [error, setError] = useState(null);
     
-    const { onRegister, handleRegister, registrationSuccess } = useAppContext();
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
@@ -28,7 +25,7 @@ function RegistrationForm() {
 
         try {
             const userData = { firstname, lastname, email, password };
-            const response = await fetch("", {
+            const response = await fetch("http://localhost:3000/api/register", {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +36,6 @@ function RegistrationForm() {
             if (response.ok) {
               console.log('Registration successful!');
               handleRegister();
-              onRegister(true);
             } else {
               console.error('Registration failed.');
               return;

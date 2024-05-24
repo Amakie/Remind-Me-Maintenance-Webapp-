@@ -3,17 +3,15 @@ import { Link } from "react-router-dom";
 import QC2 from "../Assets/QC2.png"
 import menu from "../Assets/menu.png"
 import close from "../Assets/close.png"
-//import notification from '../assets/notifications.png'
 import account from '../Assets/account.png'
 import drop from '../Assets/drop.png'
-import { useAppContext } from "../App/AppContext";
 
-function Header() {
-    const { isLoggedIn, isOpen, handleSignOut, toggleSidebar, isSidebarOpen, isLargeScreen, toggleDropdown } = useAppContext()
+function Header({ isLoggedIn, isOpen, handleSignOut, toggleSidebar, isSidebarOpen, isLargeScreen, toggleDropdown }) {
+
 
     return (
         <header className="bg-black text-white py-4 px-3 border-b-4 border-burgundy">
-            <div className={`max-w-screen-xl ${isLargeScreen ? 'mx-auto' : 'mx-auto sm:mx-10'} h-10 font-semibold flex items-center justify-between`}>
+            <div className={`max-w-screen-xl ${isLargeScreen ? 'mx-40' : 'mx-auto sm:mx-10'} h-10 font-semibold flex items-center justify-between`}>
             <Link to="/" ><img alt="logo" src={QC2} className="h-40 w-[80px] sm:w-40 lg:w-40"/></Link>
             <div className="flex items-center">
                     {isLargeScreen && (
@@ -30,16 +28,16 @@ function Header() {
                         <div className={`${isLargeScreen ? 'ml-60 flex flex-row' : 'flex flex-row' }`}>
                             {/*<Link to={''}><img alt="notification" src={notification} className="h-8 mr-5"/></Link>*/}
                             <button to={''} onClick={toggleDropdown} >
-                                <div className="flex flex-row bg-white p-0 h-8" onClick={toggleDropdown}>
+                                <div className="flex flex-row bg-black p-0 h-8" onClick={toggleDropdown}>
                                     <img alt="account" src={account} className={`${isLargeScreen ? 'h-10 self-end' : 'h-8 self-start'}`} />
                                     <img alt="drop" src={drop} />
                                     
                                 </div>
                             </button>
                             {isOpen && (
-                                <div className="flex flex-col space-y-2 bg-white fixed z-20 mt-10 p-5 items-start">
-                                        <Link to={'/EditProfile'}> My Profile</Link>
-                                        <Link to={''}> M</Link>
+                                <div className="flex flex-col space-y-2 bg-black absolute z-20 mt-10 p-5 items-start">
+                                        <Link to={'/setReminder'}> Create a Reminder</Link>
+                                        <Link to={''}> My Reminders</Link>
                                         <button onClick={handleSignOut}> Sign Out</button>
                                 </div>
                                 )}
