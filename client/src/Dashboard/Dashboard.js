@@ -12,7 +12,7 @@ function MaintenanceData() {
     useEffect(() => {
         const fetchMaintenanceData = async () => {
             try {
-                const response = await fetch("http://localhost:3000/api/dashboard", {
+                const response = await fetch("http://localhost:3000/api", {
                     headers: {
                         "Authorization": `Bearer ${authToken}`
                     }

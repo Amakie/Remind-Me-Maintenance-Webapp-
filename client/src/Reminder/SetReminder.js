@@ -20,7 +20,7 @@ function Reminder() {
         setError(null);
 
         try {
-            const response = await fetch("http://localhost:3000/api/createReminder", {
+            const response = await fetch("http://localhost:3000/api", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
