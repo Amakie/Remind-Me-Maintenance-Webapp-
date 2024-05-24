@@ -2,15 +2,6 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 
 const appschema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        require: true
-    },
-
-    lastName: {
-        type: String,
-        require: true
-    },
 
     date: {
         type: Date,
@@ -20,16 +11,6 @@ const appschema = new mongoose.Schema({
     text: {
         type: String,
         require: true
-    },
-
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true
     }
 })
 
@@ -42,16 +23,26 @@ appschema.pre('save', async function (next) {
     next()
 })
 
-// Create the user model
+/*// Create the user model
 const App = mongoose.model('_App', appschema)
 
-module.exports = { App }
+module.exports = { App }*/
 
 
 
 
-/*// Define the user schema
+// Define the user schema
 const userSchema = new mongoose.Schema({
+    firstName: {
+        type: String,
+        require: true
+    },
+
+    lastName: {
+        type: String,
+        require: true
+    },
+
     email: {
         type: String,
         required: true,
@@ -76,6 +67,6 @@ userSchema.pre('save', async function (next) {
 const User = mongoose.model('_User', userSchema)
 const App = mongoose.model('_App', appschema)
 
-module.exports = { User, App }*/
+module.exports = { User, App }
 
 
