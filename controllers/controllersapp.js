@@ -138,17 +138,22 @@ module.exports.login = (req, res) => {
         }
 
         // Check if the password is correct
-        const isPasswordValid = bcrypt.compare(password, user.password) // Corrected line
+        const isPasswordValid = bcrypt.compare(password, app.password) // Corrected line
         if (!isPasswordValid) {
             return res.status(400).json({ message: 'Invalid username or password' })
         }
 
         // Create a JWT token
-        const token = jwt.sign({ id: user._id, email: user.email }, 'your_jwt_secret_key', { expiresIn: '6h' })
+        const token = jwt.sign({ id: app._id, email: app.email }, 'your_jwt_secret_key', { expiresIn: '6h' })
 
         // Respond with the token
         res.json({ token })
     } catch (error) {
         res.status(500).json({ message: 'Internal server error' })
     }
+}
+
+module.exports.logout = (req, res) => {
+    // On the client side, the token should be removed from localStorage or cookies
+    res.json({ message: 'Logout successful' });
 }
