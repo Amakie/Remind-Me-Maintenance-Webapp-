@@ -20,6 +20,6 @@ mongoose
     .then(()=> console.log('connected to MongoDB...'))
     .catch((err) => console.log(err))
 
-app.use(routes)
+app.use("/api", routes)
 
 app.listen(PORT, () => console.log('Listening on: ${PORT}'))
