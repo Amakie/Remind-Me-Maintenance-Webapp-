@@ -1,7 +1,7 @@
 const modelsapp = require('../models/modelsapp')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const User = require('../models/modelsapp')
+const App = require('../models/modelsapp')
 const { application } = require('express')
 
 /*const get_App = async (req, res) => {
@@ -120,14 +120,14 @@ module.exports.delete_App = (req, res) => {
     })
 }
 
-module.exports.register = (req, res) => {
+module.exports.register_App = (req, res) => {
     App.create(req.body)
     .then(_App => res.json(_App))
     .catch(err => res.json(err))
 }
 
 
-module.exports.login = (req, res) => {
+module.exports.login_App = (req, res) => {
     const { email, password } = req.body
 
     try {
@@ -153,7 +153,7 @@ module.exports.login = (req, res) => {
     }
 }
 
-module.exports.logout = (req, res) => {
+module.exports.logout_App = (req, res) => {
     // On the client side, the token should be removed from localStorage or cookies
     res.json({ message: 'Logout successful' });
 }
