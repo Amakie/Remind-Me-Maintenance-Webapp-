@@ -2,6 +2,7 @@ const modelsapp = require('../models/modelsapp')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const User = require('../models/modelsapp')
+const App = require('../models/modelsapp')
 const { application } = require('express')
 
 /*const get_App = async (req, res) => {
@@ -120,11 +121,11 @@ module.exports.delete_App = (req, res) => {
     })
 }
 
-module.exports.register = (req, res) => {
-    App.create(req.body)
-    .then(_App => res.json(_App))
+app.post('/register', (req, res) => {
+    User.create(req.body)
+    .then(_User => res.json(_User))
     .catch(err => res.json(err))
-}
+})
 
 
 module.exports.login = (req, res) => {
