@@ -1,6 +1,10 @@
 const modelsapp = require('../models/modelsapp')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+<<<<<<< HEAD
+=======
+const User = require('../models/modelsapp')
+>>>>>>> fa124c7806f72c90dd5e871f751d6690cfb40a44
 const App = require('../models/modelsapp')
 const { application } = require('express')
 
@@ -120,11 +124,17 @@ module.exports.delete_App = (req, res) => {
     })
 }
 
+<<<<<<< HEAD
 module.exports.register_App = (req, res) => {
     App.create(req.body)
     .then(_App => res.json(_App))
+=======
+app.post('/register', (req, res) => {
+    User.create(req.body)
+    .then(_User => res.json(_User))
+>>>>>>> fa124c7806f72c90dd5e871f751d6690cfb40a44
     .catch(err => res.json(err))
-}
+})
 
 
 module.exports.login_App = (req, res) => {
