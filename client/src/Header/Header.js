@@ -1,3 +1,4 @@
+// Header Component
 import React from "react";
 import { Link } from "react-router-dom";
 import QC2 from "../Assets/QC2.png"

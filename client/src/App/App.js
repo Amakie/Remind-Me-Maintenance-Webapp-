@@ -14,11 +14,11 @@ function App() {
     const [registrationSuccess, setRegistrationSuccess] = useState(false);
     const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
 
     const toggleDropdown = () => {
-        setIsOpen(!isOpen)
-    }
+        setIsOpen(!isOpen);
+    };
 
     const handleLogin = () => {
         setIsLoggedIn(true);
@@ -26,6 +26,10 @@ function App() {
 
     const handleRegister = () => {
         setRegistrationSuccess(true);
+    };
+
+    const resetRegistrationSuccess = () => {
+        setRegistrationSuccess(false);
     };
 
     const handleSignOut = () => {
@@ -52,15 +56,21 @@ function App() {
         }
     };
 
+    /*useEffect(() => {
+        if (registrationSuccess) {
+            setRegistrationSuccess(false);
+        }
+    }, [registrationSuccess]);*/
+
     return (
         <Router>
             <div className="flex flex-col min-h-screen">
                 <Header toggleDropdown={toggleDropdown} isOpen={isOpen} isLoggedIn={isLoggedIn} isLargeScreen={isLargeScreen} handleSignOut={handleSignOut} isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
                 <main className="flex-grow bg-gray-200">
                     <Routes>
-                        {!isLoggedIn && <Route exact path="/" element={<LandingPage isLargeScreen={isLargeScreen}/>} />}
-                        {!isLoggedIn && <Route path="/login" element={<LoginForm onLogin={handleLogin} registrationSuccess={registrationSuccess} />} />}
-                        {!isLoggedIn && <Route path="/register" element={<RegistrationForm onRegister={handleRegister} />} />}
+                        {!isLoggedIn && <Route exact path="/" element={<LandingPage isLargeScreen={isLargeScreen} />} />}
+                        {!isLoggedIn && <Route path="/login" element={<LoginForm onLogin={handleLogin} registrationSuccess={registrationSuccess} resetRegistrationSuccess={resetRegistrationSuccess} />} />}
+                        {!isLoggedIn && <Route path="/register" element={<RegistrationForm handleRegister={handleRegister} registrationSuccess={registrationSuccess} />} />}
                         {isLoggedIn && (
                             <>
                                 <Route path="/" element={<Dashboard />} />
@@ -69,6 +79,8 @@ function App() {
                                 <Route path="*" element={<Navigate to="/" />} />
                             </>
                         )}
+                        {/* Redirect to login after successful registration */}
+                        {registrationSuccess && <Route path="*" element={<Navigate to="/login" />} />}
                     </Routes>
                 </main>
                 <Footer />
@@ -76,6 +88,5 @@ function App() {
         </Router>
     );
 }
-
 
 export default App;

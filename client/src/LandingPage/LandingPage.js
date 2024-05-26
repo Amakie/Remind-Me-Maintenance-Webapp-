@@ -1,3 +1,4 @@
+// Landing Page Component
 import React from "react";
 import bg_image from "../Assets/ld-pg-bg.png"
 import { Link } from "react-router-dom";

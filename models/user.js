@@ -1,34 +1,23 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const Schema = mongoose.Schema;
 
-const userSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true
-  },
-  lastName: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true
-  }
+
+const UserSchema = new Schema({
+    firstname: { type: String, required: true },
+    lastname: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, require: true },
 });
 
-userSchema.pre('save', async function (next) {
-  if (this.isModified('password') || this.isNew) {
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-  }
-  next();
+const User = mongoose.model('User', UserSchema);
+
+const MaintenanceRecordSchema = new Schema({
+    equipment: { type: String, required: true },
+    maintenanceDate: { type: String, required: true },
+    maintenanceDescription: { type: String, required: true },
+    user: { type: Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
-const User = mongoose.model('User', userSchema);
+const MaintenanceRecord = mongoose.model('MaintenanceRecord', MaintenanceRecordSchema);
 
-module.exports = User;
+module.exports = { User, MaintenanceRecord };

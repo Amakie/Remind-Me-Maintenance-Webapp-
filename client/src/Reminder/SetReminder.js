@@ -1,5 +1,5 @@
 // Desc: Reminder page for user to set reminders for equipment maintenance
-import React,{ useState } from "react";
+import React,{ useEffect, useState } from "react";
 import bg_image from "../Assets/dsb-bg.jpg";
 import { Navigate } from 'react-router-dom';
 
@@ -9,6 +9,8 @@ function Reminder() {
     const [maintenanceDescription, setMaintenanceDescription] = useState('');
     const [error, setError] = useState(null);
     const [submitted, setSubmitted] = useState(false);
+    const [minDate, setMinDete] = useState('');
+
 
 
     const authToken = sessionStorage.getItem('token');
@@ -20,7 +22,7 @@ function Reminder() {
         setError(null);
 
         try {
-            const response = await fetch("http://localhost:3000/api", {
+            const response = await fetch("http://localhost:3000/api/createReminder", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -45,6 +47,18 @@ function Reminder() {
             return <Navigate to="/dashboard" />;
         }
     }
+
+        useEffect(() => {
+            const formatDate = (date) => {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            };
+
+            const today = formatDate(new Date());
+            setMinDete(today);
+        }, []);
     return (
         <div className="bg-cover flex flex-col justify-center bg-center h-screen" style={{ backgroundImage: `url(${bg_image})` }}>
             <div className="max-w-lg  my-20 mx-auto mt-0 md:mt-20 lg:mt-10 p-6 bg-white rounded-xl">
@@ -65,6 +79,7 @@ function Reminder() {
                         <input
                             type="date"
                             id="maintenanceDate"
+                            min={minDate}
                             value={maintenanceDate}
                             onChange={(e) => setMaintenanceDate(e.target.value)}
                             className="w-full mt-1 border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-burgundy"
