@@ -5,6 +5,7 @@ const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
 
+    console.log("Incoming request to:", req.originalUrl); // Debugging step
     console.log("Token:", token); // Debugging step
 
     if (!token) return res.sendStatus(401);
@@ -32,5 +33,3 @@ const authenticateToken = (req, res, next) => {
 };
 
 module.exports = authenticateToken;
-
-
