@@ -48,13 +48,14 @@ function LoginForm({ onLogin, registrationSuccess, resetRegistrationSuccess }) {
             setEmail("");
             setPassword("");
             setError(null);
-            setIsLoading(false);
             onLogin();
             
         } catch (error) {
             console.error("Error:", error);
             setError("invalid email or password.");
             setIsLoading(false);
+        } finally {
+            setIsLoading(false)
         }
     };
 
@@ -85,7 +86,7 @@ function LoginForm({ onLogin, registrationSuccess, resetRegistrationSuccess }) {
                         />
                     </div>
                     <button type="submit" disabled={isLoading} className="w-full mt-3 bg-burgundy text-white px-4 py-2 rounded-md hover:bg-black">
-                        Login
+                        {isLoading? 'logging in...' : 'Login'}
                     </button>
                     {error && <p className="text-red-500">{error}</p>}
                     <p className="text-center text-sm sm:text-sm text-burgundy mt-3">
