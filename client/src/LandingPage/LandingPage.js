@@ -11,7 +11,7 @@ function LandingPage() {
             <div className="px-5 md:px-10 mt-[18vh] lg:pr-[80vh] md:w-2/3 lg:min-w-full">
                 <h1 className="font-bold text-xl sm:text-4xl leading-snug md:text-l">Take control of your appliance, system and tool maintenance</h1>
                 <p className="leading-snug mt-0 sm:text-xl lg:mt-5">
-                    Have a routine maintenance of equipments and facilities in your home, office, or institution. Never miss a maintenance day with our web app. Sign up, log your routines and let it remind you when it is time.
+                    Have a routine maintenance of equipments and facilities in your home, office, or institution? Never miss a maintenance day with our web app. Sign up, log your routines and let it remind you when it is time.
                 </p>
             </div>
             <div className="px-5 md:px-10 mt-5">

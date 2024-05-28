@@ -1,10 +1,35 @@
+// Functions for handling User Creation and Authentication
 const { User } = require('../models/user');
-const { MaintenanceRecord } = require('../models/maintenanceRecord')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 
+// register function
+const registerUser = async (req, res) => {
+    const { firstname, lastname, email, password, timeZone } = req.body;
+  
+    try {
+        // Check if the user already exists
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: 'User already exists' });
+        }
+  
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
+  
+        // Create a new user
+        const newUser = new User({ firstname, lastname, email, password: hashedPassword, timeZone });
+        await newUser.save();
+  
+        res.status(201).json({ message: 'User registered successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+  
 // login function
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -36,65 +61,6 @@ const loginUser = async (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
   }
 };
-
-
-const createMaintenanceData = async (req, res) => {
-  const { equipment, maintenanceDate, maintenanceDescription } = req.body;
-
-  if (!equipment || !maintenanceDate || !maintenanceDescription) {
-      return res.status(400).json({ message: 'All fields are required' });
-  }
-
-  try {
-      const maintenanceRecord = new MaintenanceRecord({
-          equipment,
-          maintenanceDate: new Date(maintenanceDate),
-          maintenanceDescription,
-          user: req.user.id
-      });
-      await maintenanceRecord.save();
-      res.status(201).json({ message: 'Maintenance Reminder Created successfully' });
-  } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
-  }
-};
-
-
-const registerUser = async (req, res) => {
-  const { firstname, lastname, email, password, timeZone } = req.body;
-
-  try {
-      // Check if the user already exists
-      const existingUser = await User.findOne({ email });
-      if (existingUser) {
-          return res.status(400).json({ message: 'User already exists' });
-      }
-
-      // Hash the password
-      const hashedPassword = await bcrypt.hash(password, 10);
-
-      // Create a new user
-      const newUser = new User({ firstname, lastname, email, password: hashedPassword, timeZone });
-      await newUser.save();
-
-      res.status(201).json({ message: 'User registered successfully' });
-  } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
-  }
-};
-
-const getMaintenanceData = async (req, res) => {
-  try {
-      const maintenanceData = await MaintenanceRecord.find({ user: req.user.id });
-      res.json(maintenanceData);
-  } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
-  }
-
-}
 
 
 const logoutUser = (req, res) => {

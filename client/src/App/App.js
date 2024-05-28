@@ -7,10 +7,10 @@ import RegistrationForm from '../RegistrationForm/RegistrationForm';
 import LandingPage from '../LandingPage/LandingPage';
 import SetReminder from '../Reminder/SetReminder';
 import Dashboard from '../Dashboard/Dashboard';
-import '../styles.css';
+import '../styles/main.css';
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
     const [registrationSuccess, setRegistrationSuccess] = useState(false);
     const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -22,7 +22,9 @@ function App() {
 
     const handleLogin = () => {
         setIsLoggedIn(true);
+        localStorage.setItem('isLoggedIn', 'true');
     };
+    
 
     const handleRegister = () => {
         setRegistrationSuccess(true);
@@ -34,6 +36,7 @@ function App() {
 
     const handleSignOut = () => {
         setIsLoggedIn(false);
+        localStorage.setItem('isLoggedIn', 'false');
     };
 
     useEffect(() => {
@@ -48,7 +51,6 @@ function App() {
     }, []);
 
     const toggleSidebar = () => {
-        // Close the sidebar if it's open and the screen width is greater than or equal to 768px (lg breakpoint)
         if (isSidebarOpen && window.innerWidth >= 1024) {
             setIsSidebarOpen(false);
         } else {
@@ -56,11 +58,6 @@ function App() {
         }
     };
 
-    /*useEffect(() => {
-        if (registrationSuccess) {
-            setRegistrationSuccess(false);
-        }
-    }, [registrationSuccess]);*/
 
     return (
         <Router>
@@ -68,19 +65,24 @@ function App() {
                 <Header toggleDropdown={toggleDropdown} isOpen={isOpen} isLoggedIn={isLoggedIn} isLargeScreen={isLargeScreen} handleSignOut={handleSignOut} isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
                 <main className="flex-grow bg-gray-200">
                     <Routes>
-                        {!isLoggedIn && <Route exact path="/" element={<LandingPage isLargeScreen={isLargeScreen} />} />}
-                        {!isLoggedIn && <Route path="/login" element={<LoginForm onLogin={handleLogin} registrationSuccess={registrationSuccess} resetRegistrationSuccess={resetRegistrationSuccess} />} />}
-                        {!isLoggedIn && <Route path="/register" element={<RegistrationForm handleRegister={handleRegister} registrationSuccess={registrationSuccess} />} />}
+                        {!isLoggedIn && (
+                            <>
+                                <Route exact path="/" element={<LandingPage isLargeScreen={isLargeScreen} />} />
+                                <Route path="/login" element={<LoginForm onLogin={handleLogin} registrationSuccess={registrationSuccess} resetRegistrationSuccess={resetRegistrationSuccess} />} />
+                                <Route path="/register" element={<RegistrationForm handleRegister={handleRegister} registrationSuccess={registrationSuccess} />} />
+                                {registrationSuccess && <Route path="*" element={<Navigate to="/login" />} />}
+                                <Route path="*" element={<Navigate to="/" />} />
+                            </>
+                        )}
                         {isLoggedIn && (
                             <>
                                 <Route path="/" element={<Dashboard />} />
-                                <Route path="/setReminder" element={<SetReminder />} />
+                                <Route path="/createReminder" element={<SetReminder />} />
                                 <Route path="/dashboard" element={<Dashboard />} />
                                 <Route path="*" element={<Navigate to="/" />} />
                             </>
                         )}
-                        {/* Redirect to login after successful registration */}
-                        {registrationSuccess && <Route path="*" element={<Navigate to="/login" />} />}
+
                     </Routes>
                 </main>
                 <Footer />

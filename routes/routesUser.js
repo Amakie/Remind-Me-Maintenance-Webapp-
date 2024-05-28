@@ -1,7 +1,7 @@
+// Routes
 const {Router} = require ("express")
-const { loginUser, registerUser, createMaintenanceData, getMaintenanceData } = require ("../controllers/controllerUser")
-const { updateRecord, deleteRecord } = require('../controllers/controllerRecords');
-
+const { loginUser, registerUser,  } = require ("../controllers/controllerUser")
+const { createMaintenanceData, getMaintenanceData, updateRecord, deleteRecord } = require('../controllers/controllerRecords');
 const authenticateToken = require('../middleware/authMiddleware');
 
 const router = Router()

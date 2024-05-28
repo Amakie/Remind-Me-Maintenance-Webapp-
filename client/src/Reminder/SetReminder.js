@@ -77,7 +77,7 @@ function Reminder() {
                     <div className="flex flex-col mt-5">
                         <label htmlFor="maintenanceDate">Maintenance Date</label>
                         <input
-                            type="date"
+                            type="datetime-local"
                             id="maintenanceDate"
                             min={minDate}
                             value={maintenanceDate}

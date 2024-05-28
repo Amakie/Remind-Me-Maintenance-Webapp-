@@ -13,7 +13,6 @@ function MaintenanceData() {
     const [deleteId, setDeleteId] = useState(null);
 
     const authToken = sessionStorage.getItem('token');
-    console.log("Auth Token:", authToken);
 
     useEffect(() => {
         const fetchMaintenanceData = async () => {
@@ -29,10 +28,10 @@ function MaintenanceData() {
                 }
                 const data = await response.json();
                 setMaintenanceData(data);
-                setLoading(false);
             } catch (error) {
                 console.error("Error fetching maintenance data:", error);
                 setError("Failed to fetch maintenance data");
+            } finally {
                 setLoading(false);
             }
         };
@@ -69,8 +68,10 @@ function MaintenanceData() {
             setError(null);
 
             // Refresh the data
-            const data = await response.json();
-            setMaintenanceData(data);
+            const updatedData = await response.json();
+            setMaintenanceData((prevData) =>
+                prevData.map(item => item._id === updatedData._id ? updatedData : item)
+            );
         } catch (error) {
             console.error("Error updating record:", error);
             setError("Failed to update record");
@@ -111,22 +112,22 @@ function MaintenanceData() {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className="main-div-dashboard" style={{ backgroundImage: `url(${bg_image})` }}>Loading...</div>;
     }
 
     if (error) {
-        return <div>Error: {error}</div>;
+        return <div className="main-div-dashboard" style={{ backgroundImage: `url(${bg_image})` }}>Error: {error}</div>;
     }
 
     return (
-        <div className="bg-cover flex flex-col bg-center min-h-screen items-center" style={{ backgroundImage: `url(${bg_image})` }}>
+        <div className="main-div-dashboard" style={{ backgroundImage: `url(${bg_image})` }}>
             <h2 className="text-3xl text-white font-bold mb-4 mt-10">Maintenance Data</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center mx-20 gap-4">
                 {maintenanceData.map((item) => (
                     <div key={item._id} className="bg-white p-4 rounded-lg shadow-md">
                         <h3 className="text-lg font-semibold mb-2">Equipment: {item.equipment}</h3>
-                        <p className="text-sm mb-2">Maintenance Date: {item.maintenanceDate}</p>
-                        <p className="text-sm">Maintenance Description: {item.maintenanceDescription}</p>
+                        <p className="text-sm font-semibold mb-2">Maintenance Date: <span className="font-normal">{item.maintenanceDate}</span></p>
+                        <p className="text-sm font-semibold">Maintenance Description: <span className="font-normal">{item.maintenanceDescription}</span></p>
                         <div className="flex mt-4">
                             <button
                                 onClick={() => handleEdit(item)}
@@ -146,7 +147,7 @@ function MaintenanceData() {
             </div>
 
             {editingRecord && (
-                <div className="bg-white p-4 rounded-lg shadow-md mt-10">
+                <div className="bg-white absolute z-1 p-4 rounded-lg shadow-lg mt-10">
                     <h3 className="text-lg font-semibold mb-4">Edit Maintenance Record</h3>
                     <div className="flex flex-col mt-5">
                         <label htmlFor="equipment">Equipment</label>
@@ -155,17 +156,17 @@ function MaintenanceData() {
                             id="equipment"
                             value={equipment}
                             onChange={(e) => setEquipment(e.target.value)}
-                            className="w-full border mt-1 border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-burgundy"
+                            className="edit-maintenance-items"
                         />
                     </div>
                     <div className="flex flex-col mt-5">
                         <label htmlFor="maintenanceDate">Maintenance Date</label>
                         <input
-                            type="date"
+                            type="datetime-local"
                             id="maintenanceDate"
                             value={maintenanceDate}
                             onChange={(e) => setMaintenanceDate(e.target.value)}
-                            className="w-full mt-1 border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-burgundy"
+                            className="edit-maintenance-items"
                         />
                     </div>
                     <div className="flex flex-col mt-5">
@@ -174,7 +175,7 @@ function MaintenanceData() {
                             id="maintenanceDescription"
                             value={maintenanceDescription}
                             onChange={(e) => setMaintenanceDescription(e.target.value)}
-                            className="w-full mt-1 border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-burgundy"
+                            className="edit-maintenance-items"
                         />
                     </div>
                     <button

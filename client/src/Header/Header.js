@@ -36,7 +36,7 @@ function Header({ isLoggedIn, isOpen, handleSignOut, toggleSidebar, isSidebarOpe
                             </button>
                             {isOpen && (
                                 <div className="flex flex-col space-y-2 bg-black absolute z-20 mt-10 p-5 items-start">
-                                        <Link to={'/setReminder'}> Create a Reminder</Link>
+                                        <Link to={'/createReminder'}> Create a Reminder</Link>
                                         <Link to={''}> My Reminders</Link>
                                         <button onClick={handleSignOut}> Sign Out</button>
                                 </div>

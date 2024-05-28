@@ -1,3 +1,4 @@
+// Model for Storing Maintainance data
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 

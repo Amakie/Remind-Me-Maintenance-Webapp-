@@ -1,3 +1,5 @@
+// Helper Function for handling User authentication
+
 const jwt = require('jsonwebtoken');
 const { User } = require('../models/user');
 

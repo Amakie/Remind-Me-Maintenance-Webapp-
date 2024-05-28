@@ -60,9 +60,9 @@ function LoginForm({ onLogin, registrationSuccess, resetRegistrationSuccess }) {
     };
 
     return (
-        <div className="bg-cover flex flex-col justify-center bg-center h-screen" style={{ backgroundImage: `url(${bg_image})` }}>
-            <div className="max-w-sm my-20 mx-20 sm:ml-10 lg:ml-40 mt-0 md:mt-20 md:ml-40 lg:mt-10 p-6 bg-white rounded-xl">
-                <h2 className="text-2xl font-sembold mb-4 text-burgundy text-center font-bold">Sign In</h2>
+        <div className="main-div" style={{ backgroundImage: `url(${bg_image})` }}>
+            <div className="form-div">
+                <h2 className="form-header">Sign In</h2>
                 {registrationSuccess && <p className="text-red-500 mb-4">Please login to continue</p>}
                 <form onSubmit={handleSubmit}>
                     <div className="mb-2">
@@ -72,7 +72,7 @@ function LoginForm({ onLogin, registrationSuccess, resetRegistrationSuccess }) {
                             value={email}
                             placeholder="Email"
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-burgundy"
+                            className='login-input'
                         />
                     </div>
                     <div className="mb-2">
@@ -82,14 +82,14 @@ function LoginForm({ onLogin, registrationSuccess, resetRegistrationSuccess }) {
                             value={password}
                             placeholder="Password"
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full mt-5 border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-burgundy"
+                            className='login-input'
                         />
                     </div>
-                    <button type="submit" disabled={isLoading} className="w-full mt-3 bg-burgundy text-white px-4 py-2 rounded-md hover:bg-black">
+                    <button type="submit" disabled={isLoading} className='button-primary'>
                         {isLoading? 'logging in...' : 'Login'}
                     </button>
                     {error && <p className="text-red-500">{error}</p>}
-                    <p className="text-center text-sm sm:text-sm text-burgundy mt-3">
+                    <p className="error-message">
                         Don't have an account? <Link to="/register"><span className="font-semibold underline">Sign Up</span></Link>
                     </p>
                 </form>

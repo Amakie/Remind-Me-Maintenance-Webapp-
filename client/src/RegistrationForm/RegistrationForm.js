@@ -54,9 +54,9 @@ function RegistrationForm({ handleRegister, registrationSuccess }) {
     }
 
     return (
-        <div className="bg-cover flex flex-col justify-center bg-center min-h-screen" style={{ backgroundImage: `url(${bg_image})` }}>
-            <div className="max-w-sm my-20 mx-20 sm:ml-10 lg:ml-40 mt-0 md:mt-20 md:ml-40 lg:mt-10 p-6 bg-white rounded-xl">
-                <h2 className="text-2xl text-burgundy font-sembold mb-4 font-bold text-center">Create new account</h2>
+        <div className="main-div" style={{ backgroundImage: `url(${bg_image})` }}>
+            <div className="form-div">
+                <h2 className="form-header mb-2">Create new account</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-2">
                         <input
@@ -66,7 +66,7 @@ function RegistrationForm({ handleRegister, registrationSuccess }) {
                             placeholder="First Name"
                             onChange={(e) => setFirstname(e.target.value)}
                             required
-                            className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-burgundy"
+                            className="register-input"
                         />
                     </div>
                     <div className="mb-2">
@@ -77,7 +77,7 @@ function RegistrationForm({ handleRegister, registrationSuccess }) {
                             placeholder="Last Name"
                             onChange={(e) => setLastname(e.target.value)}
                             required
-                            className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-burgundy"
+                            className="register-input"
                         />
                     </div>
                     <div className="mb-2">
@@ -88,7 +88,7 @@ function RegistrationForm({ handleRegister, registrationSuccess }) {
                             placeholder="Enter Your Email Address"
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-burgundy"
+                            className="register-input"
                         />
                     </div>
                     <div className="mb-2">
@@ -99,7 +99,7 @@ function RegistrationForm({ handleRegister, registrationSuccess }) {
                             placeholder="Password"
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-burgundy"
+                            className="register-input"
                         />
                     </div>
                     <div className="mb-2">
@@ -110,14 +110,14 @@ function RegistrationForm({ handleRegister, registrationSuccess }) {
                             placeholder="Confirm Password"
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required
-                            className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-burgundy"
+                            className="register-input"
                         />
                     </div>
-                    <button type="submit" disabled={isLoading} className="w-full mt-5 text-md font-semibold bg-burgundy text-white px-4 py-2 rounded-md hover:bg-black">
+                    <button type="submit" disabled={isLoading} className="button-primary">
                         {isLoading ? 'Registering...' : 'Register'}
                     </button>
                     {error && <p className="text-red-500 mt-2">{error}</p>}
-                    <p className="text-center text-burgundy mt-3">
+                    <p className="error-message">
                         Already have an account? <Link to="/login"><span className="font-semibold underline">Log In</span></Link>
                     </p>
                 </form>
