@@ -2,8 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import bg_image from '../Assets/fm-pg-bg.jpg';
+import { useAppContext } from "../App/AppContext";
 
-function LoginForm({ onLogin, registrationSuccess, resetRegistrationSuccess }) {
+function LoginForm() {
+    const { handleLogin, resetRegistrationSuccess, registrationSuccess } = useAppContext();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -48,7 +50,7 @@ function LoginForm({ onLogin, registrationSuccess, resetRegistrationSuccess }) {
             setEmail("");
             setPassword("");
             setError(null);
-            onLogin();
+            handleLogin();
             
         } catch (error) {
             console.error("Error:", error);

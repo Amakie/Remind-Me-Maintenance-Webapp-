@@ -2,8 +2,10 @@
 import React, { useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import bg_image from '../Assets/fm-pg-bg.jpg';
+import { useAppContext } from "../App/AppContext";
 
-function RegistrationForm({ handleRegister, registrationSuccess }) {
+function RegistrationForm() {
+    const { handleRegister, registrationSuccess } = useAppContext();
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');

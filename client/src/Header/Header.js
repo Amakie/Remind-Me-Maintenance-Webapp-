@@ -6,9 +6,10 @@ import menu from "../Assets/menu.png"
 import close from "../Assets/close.png"
 import account from '../Assets/account.png'
 import drop from '../Assets/drop.png'
+import { useAppContext } from "../App/AppContext";
 
-function Header({ isLoggedIn, isOpen, handleSignOut, toggleSidebar, isSidebarOpen, isLargeScreen, toggleDropdown }) {
-
+function Header() {
+    const { isLoggedIn, isOpen, handleSignOut, toggleSidebar, isSidebarOpen, isLargeScreen, toggleDropdown } = useAppContext()
 
     return (
         <header className="bg-black text-white py-4 px-3 border-b-4 border-burgundy">
