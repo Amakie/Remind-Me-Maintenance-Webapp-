@@ -6,18 +6,9 @@ const UserSchema = new Schema({
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    password: { type: String, require: true },
+    password: { type: String, required: true },
 });
 
 const User = mongoose.model('User', UserSchema);
 
-const MaintenanceRecordSchema = new Schema({
-    equipment: { type: String, required: true },
-    maintenanceDate: { type: String, required: true },
-    maintenanceDescription: { type: String, required: true },
-    user: { type: Schema.Types.ObjectId, ref: 'User', required: true }
-});
-
-const MaintenanceRecord = mongoose.model('MaintenanceRecord', MaintenanceRecordSchema);
-
-module.exports = { User, MaintenanceRecord };
+module.exports = { User };

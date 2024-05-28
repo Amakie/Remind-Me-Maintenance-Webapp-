@@ -2,8 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require("cors");
 const bodyParser = require("body-parser"); 
-
 const routes = require('./routes/routesUser');
+
 
 require('dotenv').config();
 
@@ -24,6 +24,8 @@ mongoose
     .then(() => console.log('Connected to MongoDB...'))
     .catch((err) => console.log(err));
 
-app.use('/api', routes); // Corrected the route path
+app.use('/api', routes);
+
+
 
 app.listen(PORT, () => console.log(`Listening on: ${PORT}`));

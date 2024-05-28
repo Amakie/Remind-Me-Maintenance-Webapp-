@@ -1,4 +1,5 @@
-const {User, MaintenanceRecord} = require('../models/user');
+const { User } = require('../models/user');
+const { MaintenanceRecord } = require('../models/maintenanceRecord')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -47,7 +48,7 @@ const createMaintenanceData = async (req, res) => {
   try {
       const maintenanceRecord = new MaintenanceRecord({
           equipment,
-          maintenanceDate,
+          maintenanceDate: new Date(maintenanceDate),
           maintenanceDescription,
           user: req.user.id
       });
@@ -61,7 +62,7 @@ const createMaintenanceData = async (req, res) => {
 
 
 const registerUser = async (req, res) => {
-  const { firstname, lastname, email, password } = req.body;
+  const { firstname, lastname, email, password, timeZone } = req.body;
 
   try {
       // Check if the user already exists
@@ -74,7 +75,7 @@ const registerUser = async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       // Create a new user
-      const newUser = new User({ firstname, lastname, email, password: hashedPassword });
+      const newUser = new User({ firstname, lastname, email, password: hashedPassword, timeZone });
       await newUser.save();
 
       res.status(201).json({ message: 'User registered successfully' });

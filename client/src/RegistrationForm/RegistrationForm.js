@@ -11,7 +11,7 @@ function RegistrationForm({ handleRegister, registrationSuccess }) {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
@@ -65,6 +65,7 @@ function RegistrationForm({ handleRegister, registrationSuccess }) {
                             value={firstname}
                             placeholder="First Name"
                             onChange={(e) => setFirstname(e.target.value)}
+                            required
                             className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-burgundy"
                         />
                     </div>
@@ -75,6 +76,7 @@ function RegistrationForm({ handleRegister, registrationSuccess }) {
                             value={lastname}
                             placeholder="Last Name"
                             onChange={(e) => setLastname(e.target.value)}
+                            required
                             className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-burgundy"
                         />
                     </div>
@@ -85,6 +87,7 @@ function RegistrationForm({ handleRegister, registrationSuccess }) {
                             value={email}
                             placeholder="Enter Your Email Address"
                             onChange={(e) => setEmail(e.target.value)}
+                            required
                             className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-burgundy"
                         />
                     </div>
@@ -95,6 +98,7 @@ function RegistrationForm({ handleRegister, registrationSuccess }) {
                             value={password}
                             placeholder="Password"
                             onChange={(e) => setPassword(e.target.value)}
+                            required
                             className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-burgundy"
                         />
                     </div>
@@ -105,6 +109,7 @@ function RegistrationForm({ handleRegister, registrationSuccess }) {
                             value={confirmPassword}
                             placeholder="Confirm Password"
                             onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
                             className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-burgundy"
                         />
                     </div>
