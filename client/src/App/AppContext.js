@@ -9,7 +9,7 @@ export const useAppContext = () => {
 };
 
 export const AppProvider = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
+    const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('isLoggedIn') === 'true');
     const [registrationSuccess, setRegistrationSuccess] = useState(false);
     const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -21,7 +21,7 @@ export const AppProvider = ({ children }) => {
 
     const handleLogin = () => {
         setIsLoggedIn(true);
-        localStorage.setItem('isLoggedIn', 'true');
+        sessionStorage.setItem('isLoggedIn', 'true');
     };
 
     const handleRegister = () => {
@@ -34,7 +34,7 @@ export const AppProvider = ({ children }) => {
 
     const handleSignOut = () => {
         setIsLoggedIn(false);
-        localStorage.setItem('isLoggedIn', 'false');
+        sessionStorage.setItem('isLoggedIn', 'false');
     };
 
     const toggleSidebar = () => {

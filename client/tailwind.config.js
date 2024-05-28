@@ -12,7 +12,7 @@ module.exports = {
       },
       colors: {
         burgundy: '#800020',
-        deepBlue: '#000088',
+        deepBlue: '#0B032A',
       },
       screens: {
         sm: '380px',

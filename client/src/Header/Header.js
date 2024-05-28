@@ -18,8 +18,8 @@ function Header() {
             <div className="flex items-center">
                     {isLargeScreen && (
                         <nav className="hidden md:flex space-x-10">
-                            <Link to={''} className="text-l hover:text-gray-300">About</Link>
-                            <Link to={''} className="text-l hover:text-gray-300">Services</Link>
+                            <Link to={'/features'} className="text-l hover:text-gray-300">Features</Link>
+                            <Link to={'/about'} className="text-l hover:text-gray-300">About</Link>
                             <Link to={''} className="text-l hover:text-gray-300">Contact</Link>
                         </nav>
                     )}
@@ -57,10 +57,10 @@ function Header() {
             <nav className={`block top-20 right-0 w-full h-full font-semibold text-white py-4 px-6 md:w-64 ${isSidebarOpen ? 'block' : 'hidden'}`}>
                 <ul className="flex flex-col space-y-4">
                     <li>
-                        <Link to={''} className="text-l hover:text-gray-300">About</Link>
+                        <Link to={'/features'} className="text-l hover:text-gray-300">Features</Link>
                     </li>
                     <li>
-                        <Link to={''} className="text-l hover:text-gray-300">Services</Link>
+                        <Link to={'/about'} className="text-l hover:text-gray-300">About</Link>
                     </li>
                     <li>
                         <Link to={''} className="text-l hover:text-gray-300">Contact</Link>

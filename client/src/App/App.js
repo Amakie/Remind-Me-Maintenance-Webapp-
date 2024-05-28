@@ -7,6 +7,7 @@ import RegistrationForm from '../RegistrationForm/RegistrationForm';
 import LandingPage from '../LandingPage/LandingPage';
 import SetReminder from '../Reminder/SetReminder';
 import Dashboard from '../Dashboard/Dashboard';
+import AboutPage from '../About/AboutPage'
 import '../styles/main.css';
 import { AppProvider, useAppContext } from "./AppContext";
 
@@ -36,6 +37,10 @@ function App() {
                                 <Route path="*" element={<Navigate to="/" />} />
                             </>
                         )}
+                        <Route path="/about" element={<AboutPage />} />
+                        <Route path="/features" element={<AboutPage />} />
+
+
                     </Routes>
                 </main>
                 <Footer />
