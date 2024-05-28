@@ -54,11 +54,11 @@ The **Remind Me Maintenance Webapp** is a portfolio project designed to help use
 
 ## Usage
 ### API Endpoints
-- **User Registration**: `POST /api/users/register`
+- **User Registration**: `POST /api/register`
 - **User Login**: `POST /api/users/login`
 - **Get All Records**: `GET /api/records`
-- **Create a Record**: `POST /api/records`
-- **Update a Record**: `PUT /api/records/:id`
+- **Create a Record**: `POST /api/createReminder`
+- **Update a Record**: `PUT /api/updateReminder/:id`
 - **Delete a Record**: `DELETE /api/records/:id`
 
 ### Interaction
@@ -72,8 +72,8 @@ The **Remind Me Maintenance Webapp** is a portfolio project designed to help use
 - **Tools**: bcrypt for password hashing, dotenv for environment variables, cors for handling cross-origin requests
 
 ## Contributors
-- **Member 1**: [Your Name] - Front-End Developer
-- **Member 2**: [Constance Amatey] - Front-End Developer
+- **Member 1**: [Jonah Emmanuel] - Front-End Developer
+- **Member 2**: [Constance Amatey] - Back-End Developer
 - **Member 3**: [Esianyo Dzisenu] - Back-End Developer
 
 ## License
