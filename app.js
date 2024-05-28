@@ -24,6 +24,7 @@ mongoose
     .then(() => console.log('Connected to MongoDB...'))
     .catch((err) => console.log(err));
 
+    
 app.use('/api', routes); // Corrected the route path
 
 app.listen(PORT, () => console.log(`Listening on: ${PORT}`));
