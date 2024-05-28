@@ -1,5 +1,4 @@
-// Desc: Reminder page for user to set reminders for equipment maintenance
-import React,{ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import bg_image from "../Assets/dsb-bg.jpg";
 import { useNavigate } from 'react-router-dom';
 
@@ -9,14 +8,11 @@ function Reminder() {
     const [maintenanceDescription, setMaintenanceDescription] = useState('');
     const [error, setError] = useState(null);
     const [submitted, setSubmitted] = useState(false);
-    const [minDate, setMinDete] = useState('');
+    const [minDate, setMinDate] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
-
-
 
     const authToken = sessionStorage.getItem('token');
     const navigate = useNavigate();
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -50,22 +46,33 @@ function Reminder() {
         }
     };
 
-        useEffect(() => {
-            const formatDate = (date) => {
-                const year = date.getFullYear();
-                const month = String(date.getMonth() + 1).padStart(2, '0');
-                const day = String(date.getDate()).padStart(2, '0');
-                return `${year}-${month}-${day}`;
-            };
+    useEffect(() => {
+        const formatDate = (date) => {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        };
 
-            const today = formatDate(new Date());
-            setMinDete(today);
-        }, []);
+        const today = formatDate(new Date());
+        setMinDate(today);
+
+        // Dynamically load Calendly script
+        const script = document.createElement('script');
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.async = true;
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
+
     return (
         <div className="bg-cover flex flex-col justify-center bg-center h-screen" style={{ backgroundImage: `url(${bg_image})` }}>
-            <div className="max-w-lg  my-20 mx-auto mt-0 md:mt-20 lg:mt-10 p-6 bg-white rounded-xl">
-                {submitted && !error && <p className="text-green-500 mt-2  mb-2">{successMessage}</p>}
-                <h1 className="text-2xl font-sembold mb-4 text-burgundy text-center font-bold">Create New Reminder</h1>
+            <div className="max-w-lg my-20 mx-auto mt-0 md:mt-20 lg:mt-10 p-6 bg-white rounded-xl">
+                {submitted && !error && <p className="text-green-500 mt-2 mb-2">{successMessage}</p>}
+                <h1 className="text-2xl font-semibold mb-4 text-burgundy text-center">Create New Reminder</h1>
                 <form onSubmit={handleSubmit} className="flex flex-col">
                     <div className="flex flex-col mt-5">
                         <label htmlFor="equipment">Equipment</label>
@@ -98,8 +105,9 @@ function Reminder() {
                         />
                     </div>
                     <button type="submit" className="w-full mt-3 bg-burgundy text-white px-4 py-2 rounded-md hover:bg-black">Submit</button>
-                    {error && <p>{error}</p>}
+                    {error && <p className="text-red-500 mt-2">{error}</p>}
                 </form>
+                <div className="calendly-inline-widget" data-url="https://calendly.com/consamate57/30min?hide_event_type_details=1" style={{ minWidth: '32px', height: '100px' }}></div>
             </div>
         </div>
     );
