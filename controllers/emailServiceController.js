@@ -7,7 +7,7 @@ require('dotenv').config();
 
 
 function startScheduler() {
-    cron.schedule('*/1 * * * *', async () => {
+    cron.schedule('0 0 * * *', async () => {
         try {
         const users = await User.find();
     
