@@ -16,7 +16,7 @@ function startScheduler() {
             const currentHour = userLocalTime.hour();
             const currentMinute = userLocalTime.minute();
     
-            if (currentHour === 11 && currentMinute === 25) {
+            if (currentHour === 0o7 && currentMinute === 0o0) {
             const startOfDay = userLocalTime.startOf('day').toDate();
             const endOfDay = userLocalTime.endOf('day').toDate();
     
