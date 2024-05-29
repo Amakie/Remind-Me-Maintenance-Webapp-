@@ -10,7 +10,7 @@ function Features () {
 
     return (
         <div className="text-white">
-            <h1 className="text-center my-10 font-semibold text-3xl">FEATURES</h1>
+            <h1 className="text-center mb-10 mt-[90px] font-semibold text-3xl">FEATURES</h1>
             <div className="flex flex-col items-center space-y-4 mx-20 lg:mx-40 px-auto pb-3 pt-3 border-b-2">
                 <div className="flex flex-col items-center ">
                     <h2 className="text-center mb-5 text-xl underline">Efficiency</h2>

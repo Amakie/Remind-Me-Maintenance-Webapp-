@@ -1,6 +1,6 @@
-// Registration Form Component
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navigate, Link } from "react-router-dom";
+import moment from "moment-timezone";
 import bg_image from '../Assets/fm-pg-bg.jpg';
 import { useAppContext } from "../App/AppContext";
 
@@ -11,9 +11,17 @@ function RegistrationForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [timeZone, setTimeZone] = useState('');
+    const [timeZones, setTimeZones] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    
+
+    useEffect(() => {
+        // Fetch time zones from moment-timezone
+        const timeZones = moment.tz.names();
+        setTimeZones(timeZones);
+    }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
@@ -26,7 +34,7 @@ function RegistrationForm() {
         }
 
         try {
-            const userData = { firstname, lastname, email, password };
+            const userData = { firstname, lastname, email, password, timeZone };
             const response = await fetch("http://localhost:3000/api/register", {
                 method: 'POST',
                 headers: {
@@ -41,7 +49,7 @@ function RegistrationForm() {
             } else {
                 const data = await response.json();
                 setError(data.message);
-                console.log (data)
+                console.log(data);
             }
         } catch (error) {
             console.error("Error:", error);
@@ -50,6 +58,7 @@ function RegistrationForm() {
             setIsLoading(false);
         }
     };
+
     if (registrationSuccess) {
         console.log('success');
         return <Navigate to="/login" />;
@@ -84,7 +93,7 @@ function RegistrationForm() {
                     </div>
                     <div className="mb-2">
                         <input
-                            type="text"
+                            type="email"
                             id="email"
                             value={email}
                             placeholder="Enter Your Email Address"
@@ -92,6 +101,20 @@ function RegistrationForm() {
                             required
                             className="register-input"
                         />
+                    </div>
+                    <div className="mb-2">
+                        <select
+                            id="timeZone"
+                            value={timeZone}
+                            onChange={(e) => setTimeZone(e.target.value)}
+                            required
+                            className="register-input"
+                        >
+                            <option value="" disabled>Select Time Zone</option>
+                            {timeZones.map((tz) => (
+                                <option key={tz} value={tz}>{tz}</option>
+                            ))}
+                        </select>
                     </div>
                     <div className="mb-2">
                         <input
@@ -115,6 +138,7 @@ function RegistrationForm() {
                             className="register-input"
                         />
                     </div>
+                    
                     <button type="submit" disabled={isLoading} className="button-primary">
                         {isLoading ? 'Registering...' : 'Register'}
                     </button>

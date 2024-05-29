@@ -57,15 +57,7 @@ function Reminder() {
         const today = formatDate(new Date());
         setMinDate(today);
 
-        // Dynamically load Calendly script
-        const script = document.createElement('script');
-        script.src = 'https://assets.calendly.com/assets/external/widget.js';
-        script.async = true;
-        document.body.appendChild(script);
-
-        return () => {
-            document.body.removeChild(script);
-        };
+      
     }, []);
 
     return (
@@ -107,7 +99,6 @@ function Reminder() {
                     <button type="submit" className="w-full mt-3 bg-burgundy text-white px-4 py-2 rounded-md hover:bg-black">Submit</button>
                     {error && <p className="text-red-500 mt-2">{error}</p>}
                 </form>
-                <div className="calendly-inline-widget" data-url="https://calendly.com/consamate57/30min?hide_event_type_details=1" style={{ minWidth: '32px', height: '100px' }}></div>
             </div>
         </div>
     );

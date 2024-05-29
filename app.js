@@ -1,12 +1,11 @@
-// Express.js Server
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require("cors");
-const bodyParser = require("body-parser"); 
+const cors = require('cors');
+const bodyParser = require('body-parser'); 
 const routes = require('./routes/routesUser');
-
-
 require('dotenv').config();
+const { startScheduler } = require('./controllers/emailServiceController'); // Start the scheduler
+
 
 const jwtSecret = process.env.JWT_SECRET;
 const app = express();
@@ -20,12 +19,13 @@ app.use((req, res, next) => {
     next();
 });
 
-mongoose
-    .connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB...'))
     .catch((err) => console.log(err));
 
-    
 app.use('/api', routes); 
 
-app.listen(PORT, () => console.log(`Listening on: ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`Listening on: ${PORT}`);
+    startScheduler();
+});
