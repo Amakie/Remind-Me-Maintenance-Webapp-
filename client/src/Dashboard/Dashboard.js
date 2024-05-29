@@ -121,7 +121,7 @@ function MaintenanceData() {
 
     return (
         <div className="main-div-dashboard" style={{ backgroundImage: `url(${bg_image})` }}>
-            <h2 className="text-3xl text-white font-bold mb-4 mt-10">Maintenance Data</h2>
+            <h2 className="text-3xl text-white font-bold mb-4 mt-[90px]">Maintenance Data</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center mx-20 gap-4">
                 {maintenanceData.map((item) => (
                     <div key={item._id} className="bg-white p-4 rounded-lg shadow-md">
@@ -147,7 +147,7 @@ function MaintenanceData() {
             </div>
 
             {editingRecord && (
-                <div className="bg-white absolute z-1 p-4 rounded-lg shadow-lg mt-10">
+                <div className="bg-white absolute z-1 p-4 rounded-lg shadow-lg mt-[90px]">
                     <h3 className="text-lg font-semibold mb-4">Edit Maintenance Record</h3>
                     <div className="flex flex-col mt-5">
                         <label htmlFor="equipment">Equipment</label>

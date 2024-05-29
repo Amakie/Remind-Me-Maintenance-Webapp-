@@ -62,7 +62,7 @@ function Reminder() {
 
     return (
         <div className="bg-cover flex flex-col justify-center bg-center h-screen" style={{ backgroundImage: `url(${bg_image})` }}>
-            <div className="max-w-lg my-20 mx-auto mt-0 md:mt-20 lg:mt-10 p-6 bg-white rounded-xl">
+            <div className="max-w-lg my-20 mx-auto mt-0 md:mt-20 lg:mt-[90px] p-6 bg-white rounded-xl">
                 {submitted && !error && <p className="text-green-500 mt-2 mb-2">{successMessage}</p>}
                 <h1 className="text-2xl font-semibold mb-4 text-burgundy text-center">Create New Reminder</h1>
                 <form onSubmit={handleSubmit} className="flex flex-col">
