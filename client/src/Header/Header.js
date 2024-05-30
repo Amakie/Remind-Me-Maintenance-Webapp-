@@ -20,7 +20,7 @@ function Header() {
                         <nav className="hidden md:flex space-x-10">
                             <Link to={'/features'} className="text-l hover:text-gray-300">Features</Link>
                             <Link to={'/about'} className="text-l hover:text-gray-300">About</Link>
-                            <Link to={''} className="text-l hover:text-gray-300">Contact</Link>
+                            <Link to={'/contact'} className="text-l hover:text-gray-300">Contact</Link>
                         </nav>
                     )}
                     {!isLoggedIn ? (
@@ -63,7 +63,7 @@ function Header() {
                         <Link to={'/about'} className="text-l hover:text-gray-300">About</Link>
                     </li>
                     <li>
-                        <Link to={''} className="text-l hover:text-gray-300">Contact</Link>
+                        <Link to={'/contact'} className="text-l hover:text-gray-300">Contact</Link>
                     </li>
                 </ul>
             </nav>

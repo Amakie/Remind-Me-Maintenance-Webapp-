@@ -5,7 +5,7 @@ import esianyo from '../Assets/esianyo.jpg'
 
 function About () {
     return (
-        <div className="text-white mb-40">
+        <div className="text-white mb-20 mt-[90px]">
             <h1 className="text-center my-10 font-semibold text-3xl">About Us</h1>
             <div className="flex flex-col text-white mx-20 lg:mx-40 px-auto items-center">
                 <p>The technical team behind the creation of the "Remind Me Maintenance" app developed a comprehensive solution aimed at simplifying and optimizing maintenance management processes for users. The team consisted of skilled software engineers, designers, and project managers who collaborated to deliver a robust and user-friendly application.</p>

@@ -22,7 +22,7 @@
         @apply bg-cover flex flex-col justify-center bg-center min-h-screen
     }
     .form-div {
-        @apply max-w-sm my-20 mx-20 sm:ml-10 lg:ml-40 mt-0 md:mt-20 md:ml-40 lg:mt-10 p-6 bg-white rounded-xl
+        @apply max-w-sm my-20 mx-20 sm:ml-10 lg:ml-40 mt-40 md:mt-40 md:ml-40 lg:mt-40 p-6 bg-white rounded-xl
     }
     .error-message {
         @apply text-center text-sm sm:text-sm text-burgundy mt-3
@@ -35,5 +35,11 @@
     }
     .about-div {
         @apply bg-cover flex flex-col items-center bg-center min-h-screen 
+    }
+    .contact-div {
+        @apply bg-cover flex flex-col items-center
+    }
+    .contact-form-div {
+        @apply max-w-sm my-20 mx-20 sm:ml-10 lg:ml-40 mt-0 md:mt-20 md:ml-40 lg:mt-20 p-6 bg-white rounded-xl
     }
 }
