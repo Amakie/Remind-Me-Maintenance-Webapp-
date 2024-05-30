@@ -14,7 +14,7 @@ function Header() {
     return (
         <header className="fixed top-0 left-0 w-full bg-black text-white py-4 px-3 border-b-4  border-burgundy">
             <div className={`max-w-screen-xl ${isLargeScreen ? 'mx-40' : 'mx-auto sm:mx-10'} h-10 font-semibold flex items-center justify-between`}>
-            <Link to="/" ><img alt="logo" src={QC2} className="h-40 w-[80px] sm:w-40 lg:w-40"/></Link>
+            <Link to="/" ><img alt="logo" src={QC2} className="h-5 w-[60px] sm:w-40 lg:w-40"/></Link>
             <div className="flex items-center">
                     {isLargeScreen && (
                         <nav className="hidden md:flex space-x-10">
